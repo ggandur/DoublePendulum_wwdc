@@ -1,10 +1,8 @@
 import SwiftUI
 
-struct CircleLineView: View {
-    @State var angle1: Double = .pi / 2
-    @State var angle2: Double = .pi / 2.5
-    @State var angle1Velocity: Double = 0
-    @State var angle2Velocity: Double = 0
+struct DoublePendulumView: View {
+    @State var angle1: Double = .pi / 1.9
+    @State var angle2: Double = .pi / 1.8
 
     var body: some View {
         let line1: Double = 150
@@ -12,6 +10,8 @@ struct CircleLineView: View {
         let firstVertexMass: Double = 25
         let secondVertexMass: Double = 25
         let gravity = 0.1
+        var angle2Velocity: Double = 0
+        var angle1Velocity: Double = 0
 
         let x1: Double = line1 * sin(angle1) + 420
         let y1: Double = line1 * cos(angle1) + 150
@@ -31,7 +31,7 @@ struct CircleLineView: View {
             .stroke(Color.black, lineWidth: 2)
             Circle()
                 .frame(width: CGFloat(firstVertexMass), height: CGFloat(firstVertexMass))
-                .foregroundColor(.red)
+                .foregroundColor(.blue)
                 .position(x: CGFloat(x1), y: CGFloat(y1))
             Circle()
                 .frame(width: CGFloat(secondVertexMass), height: CGFloat(secondVertexMass))
@@ -39,7 +39,7 @@ struct CircleLineView: View {
                 .position(x: CGFloat(x2), y: CGFloat(y2))
         }
         .onAppear {
-            let timer = Timer.scheduledTimer(withTimeInterval: 0.04, repeats: true) { _ in
+            let timer = Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true) { _ in
 
                 let num1: Double = -gravity * (2 * firstVertexMass * secondVertexMass) * sin(angle1)
                 let num2: Double = -secondVertexMass * gravity * sin(angle1 - 2 * angle2)
