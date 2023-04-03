@@ -13,9 +13,18 @@ struct DoublePendulumView: View {
 
     @State var angle1: Double = .pi / 1.95
     @State var angle2: Double = .pi / 1.85
-
     @State var angle3: Double = .pi / 1.88
     @State var angle4: Double = .pi / 1.78
+
+    @State var angle1Velocity: Double = 0
+    @State var angle2Velocity: Double = 0
+    @State var angle3Velocity: Double = 0
+    @State var angle4Velocity: Double = 0
+
+    @State var angle1Acceleration: Double = 0
+    @State var angle2Acceleration: Double = 0
+    @State var angle3Acceleration: Double = 0
+    @State var angle4Acceleration: Double = 0
 
     @State var buttonText: String = "Start Simulation"
 
@@ -26,10 +35,6 @@ struct DoublePendulumView: View {
         let firstVertexMass: Double = 25
         let secondVertexMass: Double = 25
         let gravity = 0.1
-        var angle1Velocity: Double = 0
-        var angle2Velocity: Double = 0
-        var angle1Acceleration: Double = 0
-        var angle2Acceleration: Double = 0
 
         let x1: Double = line1 * sin(angle1) + screenWidthCenter
         let y1: Double = line1 * cos(angle1) + 350
@@ -38,10 +43,6 @@ struct DoublePendulumView: View {
 
         let firstVertexMass2: Double = 25
         let secondVertexMass2: Double = 25
-        var angle3Velocity: Double = 0
-        var angle4Velocity: Double = 0
-        var angle3Acceleration: Double = 0
-        var angle4Acceleration: Double = 0
 
         let x1b: Double = line1 * sin(angle3) + screenWidthCenter
         let y1b: Double = line1 * cos(angle3) + 350
@@ -140,13 +141,33 @@ struct DoublePendulumView: View {
                 }
                 RunLoop.current.add(timer, forMode: .common)
             }
-            Button("\(buttonText)") {
-                isSimulationStarted.toggle()
-                if isSimulationStarted {
-                    buttonText = "Pause Simulation"
-                } else {
-                    buttonText = "Resume Simulation"
+            HStack {
+                Button("\(buttonText)") {
+                    isSimulationStarted.toggle()
+                    if isSimulationStarted {
+                        buttonText = "Pause Simulation"
+                    } else {
+                        buttonText = "Resume Simulation"
+                    }
                 }
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 50))
+                Button("Reset Angles") {
+                    angle1 = .pi / 1.95
+                    angle2 = .pi / 1.85
+                    angle3 = .pi / 1.88
+                    angle4 = .pi / 1.78
+
+                    angle1Velocity = 0.0
+                    angle2Velocity = 0.0
+                    angle3Velocity = 0.0
+                    angle4Velocity = 0.0
+
+                    angle1Acceleration = 0.0
+                    angle2Acceleration = 0.0
+                    angle3Acceleration = 0.0
+                    angle4Acceleration = 0.0
+                }
+                .padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 0))
             }
         }
     }
