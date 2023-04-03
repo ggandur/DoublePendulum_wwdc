@@ -16,7 +16,7 @@ struct DoublePendulumView: View {
 
     @State var angle3: Double = .pi / 1.88
     @State var angle4: Double = .pi / 1.78
-    
+
     @State var buttonText: String = "Start Simulation"
 
     var body: some View {

@@ -13,7 +13,7 @@ struct DoublePendulumDemonstrationView: View {
 
     @State var angle1: Double = .pi / 1.95
     @State var angle2: Double = .pi / 1.85
-        
+
     var body: some View {
         let screenWidthCenter = Double(UIScreen.main.bounds.width) / 2
         let line1: Double = 170
