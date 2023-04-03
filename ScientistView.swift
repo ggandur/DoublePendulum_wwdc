@@ -11,7 +11,7 @@ import SwiftUI
 struct ScientistView: View {
     @EnvironmentObject var appSettings: AppSettings
     @State var tapsCounter: Int = 0
-    
+
     var body: some View {
         ZStack {
             Color(red: 0.85, green: 0.65, blue: 0.95)
@@ -20,7 +20,7 @@ struct ScientistView: View {
         }
         .onTapGesture {
             tapsCounter += 1
-            
+
             if tapsCounter == 5 {
                 appSettings.viewController = 1
             }
