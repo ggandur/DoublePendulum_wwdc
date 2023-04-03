@@ -9,9 +9,11 @@ import Foundation
 import SwiftUI
 
 struct DoublePendulumDemonstrationView: View {
+    @EnvironmentObject var appSettings: AppSettings
+
     @State var angle1: Double = .pi / 1.95
     @State var angle2: Double = .pi / 1.85
-
+        
     var body: some View {
         let screenWidthCenter = Double(UIScreen.main.bounds.width) / 2
         let line1: Double = 170
@@ -54,7 +56,9 @@ struct DoublePendulumDemonstrationView: View {
                     .position(x: CGFloat(x2), y: CGFloat(y2))
             }
             .onAppear {
-                let timer = Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true) { _ in
+                var elapsedTime = 0.0
+                var timer: Timer?
+                timer = Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true) { _ in
                     // First pendulum angles calculations
                     var num1: Double = -gravity * (2 * firstVertexMass * secondVertexMass) * sin(angle1)
                     var num2: Double = -secondVertexMass * gravity * sin(angle1 - 2 * angle2)
@@ -75,8 +79,19 @@ struct DoublePendulumDemonstrationView: View {
                     angle1 += angle1Velocity
                     angle2Velocity += angle2Acceleration
                     angle2 += angle2Velocity
+
+                    elapsedTime += 0.025
+
+                    if elapsedTime >= 10 {
+                        timer?.invalidate()
+                    }
                 }
-                RunLoop.current.add(timer, forMode: .common)
+                if let timer = timer {
+                    RunLoop.current.add(timer, forMode: .common)
+                }
+            }
+            .onTapGesture {
+                appSettings.viewController = 2
             }
         }
     }

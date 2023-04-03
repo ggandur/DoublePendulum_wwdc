@@ -16,6 +16,8 @@ struct DoublePendulumView: View {
 
     @State var angle3: Double = .pi / 1.88
     @State var angle4: Double = .pi / 1.78
+    
+    @State var buttonText: String = "Start Simulation"
 
     var body: some View {
         let screenWidthCenter = Double(UIScreen.main.bounds.width) / 2
@@ -138,8 +140,13 @@ struct DoublePendulumView: View {
                 }
                 RunLoop.current.add(timer, forMode: .common)
             }
-            Button("Start Simulation") {
+            Button("\(buttonText)") {
                 isSimulationStarted.toggle()
+                if isSimulationStarted {
+                    buttonText = "Pause Simulation"
+                } else {
+                    buttonText = "Resume Simulation"
+                }
             }
         }
     }
