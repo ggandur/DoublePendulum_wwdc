@@ -21,6 +21,8 @@ struct DoublePendulumDemonstrationView: View {
         let gravity = 0.1
         var angle2Velocity: Double = 0
         var angle1Velocity: Double = 0
+        var angle2Acceleration: Double = 0
+        var angle1Acceleration: Double = 0
 
         let x1: Double = line1 * sin(angle1) + screenWidthCenter
         let y1: Double = line1 * cos(angle1) + 350
@@ -59,26 +61,23 @@ struct DoublePendulumDemonstrationView: View {
                     var num3: Double = -2 * sin(angle1 - angle2) * secondVertexMass
                     var num4: Double = angle2Velocity * angle2Velocity * line2 + angle1Velocity * angle1Velocity * line1 * cos(angle1 - angle2)
                     var denominator: Double = line1 * (2 * firstVertexMass + secondVertexMass - secondVertexMass * cos(2 * angle1 - 2 * angle2))
-                    let angle1Acceleration: Double = (num1 + num2 + num3 * num4) / denominator
+                    angle1Acceleration = (num1 + num2 + num3 * num4) / denominator
 
                     num1 = 2 * sin(angle1 - angle2)
                     num2 = (angle1Velocity * angle1Velocity * line1 * (firstVertexMass + secondVertexMass))
                     num3 = gravity * (firstVertexMass + secondVertexMass) * cos(angle1)
                     num4 = angle2Velocity * angle2Velocity * line2 * secondVertexMass * cos(angle1 - angle2)
                     denominator = line2 * (2 * firstVertexMass + secondVertexMass - secondVertexMass * cos(2 * angle1 - 2 * angle2))
-                    let angle2Acceleration: Double = (num1 * (num2 + num3 + num4)) / denominator
+                    angle2Acceleration = (num1 * (num2 + num3 + num4)) / denominator
 
                     // First pendulum angles
                     angle1Velocity += angle1Acceleration
                     angle1 += angle1Velocity
                     angle2Velocity += angle2Acceleration
                     angle2 += angle2Velocity
-
-    //                angle1Velocity *= 0.999
-    //                angle2Velocity *= 0.999
                 }
                 RunLoop.current.add(timer, forMode: .common)
-        }
+            }
         }
     }
 }
