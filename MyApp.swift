@@ -15,8 +15,10 @@ struct MyApp: App {
             case 0:
                 ScientistView().environmentObject(appSettings)
             case 1:
-                DoublePendulumDemonstrationView().environmentObject(appSettings)
+                SinglePendulumView().environmentObject(appSettings)
             case 2:
+                DoublePendulumDemonstrationView().environmentObject(appSettings)
+            case 3:
                 DoublePendulumView()
             default:
                 ScientistView().environmentObject(appSettings)

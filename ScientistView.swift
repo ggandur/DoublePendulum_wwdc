@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ScientistView: View {
+    @ObservedObject var globalMessages = GlobalMessages.shared
     @EnvironmentObject var appSettings: AppSettings
     @State var tapsCounter: Int = 0
 
@@ -17,26 +18,48 @@ struct ScientistView: View {
             Color(red: 0.85, green: 0.65, blue: 0.95)
                 .ignoresSafeArea()
             VStack {
-                Text("You tapped \(tapsCounter) times!")
+                Text("\(globalMessages.messages1[tapsCounter])")
                     .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
                     .font(.system(size: 36))
-                    .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
-                Spacer()
+                    .frame(width: 700, height: 500, alignment: .center)
+                Image("Professora")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 500, height: 500)
                 HStack {
-                    Image("Professora")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 500, height: 500)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 25, trailing: 0))
+                    if tapsCounter != 0 {
+                        Button(action: {
+                            tapsCounter -= 1
+                        }, label: {
+                            Text("Back")
+                                .fontWeight(.bold)
+                                .font(.system(size: 24))
+                                .padding()
+                                .background(Color.purple)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(10)
+                        })
+                        .padding(.leading, 40)
+                    }
                     Spacer()
-                }
-            }
-        }
-        .onTapGesture {
-            tapsCounter += 1
+                    Button(action: {
+                        tapsCounter += 1
 
-            if tapsCounter == 5 {
-                appSettings.viewController = 1
+                        if tapsCounter == 4 {
+                            appSettings.viewController = 1
+                        }
+                    }, label: {
+                        Text("Next")
+                            .fontWeight(.bold)
+                            .font(.system(size: 24))
+                            .padding()
+                            .background(Color.purple)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(10)
+                    })
+                    .padding(.trailing, 40)
+                }
             }
         }
     }
