@@ -9,6 +9,9 @@ import Foundation
 import SwiftUI
 
 struct DoublePendulumView: View {
+    @ObservedObject var globalMessages = GlobalMessages.shared
+    @EnvironmentObject var appSettings: AppSettings
+
     @State var isSimulationStarted: Bool = false
 
     @State var angle1: Double = .pi / 1.95
@@ -27,6 +30,7 @@ struct DoublePendulumView: View {
     @State var angle4Acceleration: Double = 0
 
     @State var buttonText: String = "Start Simulation"
+    @State var tapsCounter: Int = 0
 
     var body: some View {
         let screenWidthCenter = Double(UIScreen.main.bounds.width) / 2
@@ -35,9 +39,10 @@ struct DoublePendulumView: View {
         let firstVertexMass: Double = 25
         let secondVertexMass: Double = 25
         let gravity = 0.1
+        let startingX: Double = 300
 
         let x1: Double = line1 * sin(angle1) + screenWidthCenter
-        let y1: Double = line1 * cos(angle1) + 150
+        let y1: Double = line1 * cos(angle1) + startingX
         let x2: Double = x1 + (line2 * sin(angle2))
         let y2: Double = y1 + (line2 * cos(angle2))
 
@@ -45,17 +50,21 @@ struct DoublePendulumView: View {
         let secondVertexMass2: Double = 25
 
         let x1b: Double = line1 * sin(angle3) + screenWidthCenter
-        let y1b: Double = line1 * cos(angle3) + 150
+        let y1b: Double = line1 * cos(angle3) + startingX
         let x2b: Double = x1b + (line2 * sin(angle4))
         let y2b: Double = y1b + (line2 * cos(angle4))
 
         ZStack {
             BackgroundColor()
+            if tapsCounter < 2 {
+                Color(red: 0, green: 0, blue: 0, opacity: 0.7)
+                    .ignoresSafeArea()
+            }
             VStack {
                 ZStack {
                     // First Pendulum
                     Path { path in
-                        let startingPoint = CGPoint(x: screenWidthCenter, y: 150)
+                        let startingPoint = CGPoint(x: screenWidthCenter, y: startingX)
                         let center1 = CGPoint(x: CGFloat(x1b), y: CGFloat(y1b))
                         let center2 = CGPoint(x: CGFloat(x2b), y: CGFloat(y2b))
                         path.move(to: startingPoint)
@@ -75,7 +84,7 @@ struct DoublePendulumView: View {
 
                     // Second Pendulum
                     Path { path in
-                        let startingPoint = CGPoint(x: screenWidthCenter, y: 150)
+                        let startingPoint = CGPoint(x: screenWidthCenter, y: startingX)
                         let center1 = CGPoint(x: CGFloat(x1), y: CGFloat(y1))
                         let center2 = CGPoint(x: CGFloat(x2), y: CGFloat(y2))
                         path.move(to: startingPoint)
@@ -92,6 +101,69 @@ struct DoublePendulumView: View {
                         .frame(width: CGFloat(secondVertexMass), height: CGFloat(secondVertexMass))
                         .foregroundColor(.blue)
                         .position(x: CGFloat(x2), y: CGFloat(y2))
+                    if tapsCounter >= 2 {
+                        VStack {
+                            HStack {
+                                Button(action: {
+                                    angle1 = .pi / 1.95
+                                    angle2 = .pi / 1.85
+                                    angle3 = .pi / 1.88
+                                    angle4 = .pi / 1.78
+
+                                    angle1Velocity = 0.0
+                                    angle2Velocity = 0.0
+                                    angle3Velocity = 0.0
+                                    angle4Velocity = 0.0
+
+                                    angle1Acceleration = 0.0
+                                    angle2Acceleration = 0.0
+                                    angle3Acceleration = 0.0
+                                    angle4Acceleration = 0.0
+                                }, label: {
+                                    Text("Reset Angles")
+                                        .fontWeight(.bold)
+                                        .font(.system(size: 24))
+                                        .padding()
+                                        .background(Color.purple.opacity(0.8))
+                                        .foregroundColor(Color.white)
+                                        .cornerRadius(10)
+                                        .padding(.leading, 50)
+                                })
+                                Spacer()
+                                    .frame(width: 250)
+                                Button(action: {
+                                    isSimulationStarted.toggle()
+                                    if isSimulationStarted {
+                                        buttonText = "Pause Simulation"
+                                    } else {
+                                        buttonText = "Resume Simulation"
+                                    }
+                                }, label: {
+                                    Text("\(buttonText)")
+                                        .fontWeight(.bold)
+                                        .font(.system(size: 24))
+                                        .padding()
+                                        .background(Color.purple.opacity(0.8))
+                                        .foregroundColor(Color.white)
+                                        .cornerRadius(10)
+                                        .padding(.trailing, 50)
+                                })
+                                .frame(width: 300)
+                            }
+                            .padding(.top, 20)
+                            Spacer()
+                            Image("Professora")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 300)
+                                .padding(.bottom, 20)
+                            HStack {
+                                Spacer()
+                                NextButton(tapsCounter: $tapsCounter,
+                                           viewControllerDestination: 3)
+                            }
+                        }
+                    }
                 }
                 .onAppear {
                     let timer = Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true) { _ in
@@ -137,57 +209,20 @@ struct DoublePendulumView: View {
                             angle3 += angle3Velocity
                             angle4Velocity += angle4Acceleration
                             angle4 += angle4Velocity
-                        } else {}
+                        }
                     }
                     RunLoop.current.add(timer, forMode: .common)
                 }
-                HStack {
-                    Button(action: {
-                        isSimulationStarted.toggle()
-                        if isSimulationStarted {
-                            buttonText = "Pause Simulation"
-                        } else {
-                            buttonText = "Resume Simulation"
-                        }
-                    }, label: {
-                        Text("\(buttonText)")
-                            .fontWeight(.bold)
-                            .font(.system(size: 24))
-                            .padding()
-                            .background(Color.purple)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(10)
-                            .padding(.leading, 50)
-                    })
+            }
+            if tapsCounter < 2 {
+                VStack {
                     Spacer()
-                    Button(action: {
-                        angle1 = .pi / 1.95
-                        angle2 = .pi / 1.85
-                        angle3 = .pi / 1.88
-                        angle4 = .pi / 1.78
-
-                        angle1Velocity = 0.0
-                        angle2Velocity = 0.0
-                        angle3Velocity = 0.0
-                        angle4Velocity = 0.0
-
-                        angle1Acceleration = 0.0
-                        angle2Acceleration = 0.0
-                        angle3Acceleration = 0.0
-                        angle4Acceleration = 0.0
-                    }, label: {
-                        Text("Reset Angles")
-                            .fontWeight(.bold)
-                            .font(.system(size: 24))
-                            .padding()
-                            .background(Color.purple)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(10)
-                            .padding(.trailing, 50)
-                    })
+                        .frame(height: 400)
+                    DialogueView(tapsCounter: $tapsCounter,
+                                 message: globalMessages.messages4[tapsCounter],
+                                 messageTextColor: InfoColor,
+                                 viewControllerDestination: 3)
                 }
-                .padding()
-                Spacer()
             }
         }
     }

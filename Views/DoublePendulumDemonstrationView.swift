@@ -88,6 +88,7 @@ struct DoublePendulumDemonstrationView: View {
                 }
                 DialogueView(tapsCounter: $tapsCounter,
                              message: globalMessages.messages3[tapsCounter],
+                             messageTextColor: TextColor,
                              viewControllerDestination: 3)
             }
         }

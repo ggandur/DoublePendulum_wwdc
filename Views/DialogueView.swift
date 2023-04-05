@@ -11,6 +11,7 @@ struct DialogueView: View {
     @Binding var tapsCounter: Int
 
     var message: String
+    var messageTextColor: Color
     var viewControllerDestination: Int
 
     var body: some View {
@@ -18,7 +19,7 @@ struct DialogueView: View {
             .fontWeight(.bold)
             .multilineTextAlignment(.center)
             .font(.system(size: 36))
-            .foregroundColor(TextColor)
+            .foregroundColor(messageTextColor)
             .frame(width: 700, height: 300, alignment: .center)
         Spacer()
         Image("Professora")

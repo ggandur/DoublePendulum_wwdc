@@ -44,4 +44,15 @@ class GlobalMessages: ObservableObject {
 
         "",
     ]
+    @Published var messages4 = [
+        "Notice how these pendulums have very little difference in their starting angles.",
+
+        "Now start the simulation and see how their trajectories will behave!",
+
+        "",
+
+        "",
+
+        "",
+    ]
 }
