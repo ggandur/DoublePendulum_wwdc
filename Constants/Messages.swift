@@ -35,13 +35,13 @@ class GlobalMessages: ObservableObject {
     ]
     @Published var messages3 = [
         "This is a double pendulum, which means there’s a pendulum hanging from another pendulum.",
-        
+
         "It becomes much harder to predict how it’s going to behave when there are 2 pendulums.",
-        
+
         "Very small changes to the variables at the start can result in totally different results at the end.",
-        
+
         "We call this behavior chaotic",
-        
+
         "",
     ]
 }

@@ -58,49 +58,9 @@ struct SinglePendulumView: View {
                         RunLoop.current.add(timer, forMode: .common)
                     }
                 }
-                Text("\(globalMessages.messages2[tapsCounter])")
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 36))
-                    .frame(width: 700, height: 300, alignment: .center)
-                Image("Professora")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 500, height: 300)
-                HStack {
-                    if tapsCounter != 0 {
-                        Button(action: {
-                            tapsCounter -= 1
-                        }, label: {
-                            Text("Back")
-                                .fontWeight(.bold)
-                                .font(.system(size: 24))
-                                .padding()
-                                .background(Color.purple)
-                                .foregroundColor(Color.white)
-                                .cornerRadius(10)
-                        })
-                        .padding(.leading, 40)
-                    }
-                    Spacer()
-                    Button(action: {
-                        tapsCounter += 1
-                        
-                        if tapsCounter == 4 {
-                            appSettings.viewController = 2
-                        }
-                    }, label: {
-                        Text("Next")
-                            .fontWeight(.bold)
-                            .font(.system(size: 24))
-                            .padding()
-                            .background(Color.purple)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(10)
-                    })
-                    .padding(.trailing, 40)
-                }
-                .padding(.bottom, 30)
+                DialogueView(tapsCounter: $tapsCounter,
+                             message: globalMessages.messages2[tapsCounter],
+                             viewControllerDestination: 2)
             }
         }
     }

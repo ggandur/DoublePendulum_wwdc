@@ -11,7 +11,7 @@ import SwiftUI
 struct DoublePendulumDemonstrationView: View {
     @ObservedObject var globalMessages = GlobalMessages.shared
     @EnvironmentObject var appSettings: AppSettings
-    
+
     @State var tapsCounter: Int = 0
 
     @State var angle1: Double = .pi / 1.88
@@ -81,58 +81,14 @@ struct DoublePendulumDemonstrationView: View {
                         angle1 += angle1Velocity
                         angle2Velocity += angle2Acceleration
                         angle2 += angle2Velocity
-
                     }
                     if let timer = timer {
                         RunLoop.current.add(timer, forMode: .common)
                     }
                 }
-                .onTapGesture {
-                    appSettings.viewController = 3
-                }
-                Text("\(globalMessages.messages3[tapsCounter])")
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 36))
-                    .frame(width: 700, height: 300, alignment: .center)
-                Image("Professora")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 300)
-                HStack {
-                    if tapsCounter != 0 {
-                        Button(action: {
-                            tapsCounter -= 1
-                        }, label: {
-                            Text("Back")
-                                .fontWeight(.bold)
-                                .font(.system(size: 24))
-                                .padding()
-                                .background(Color.purple)
-                                .foregroundColor(Color.white)
-                                .cornerRadius(10)
-                        })
-                        .padding(.leading, 40)
-                    }
-                    Spacer()
-                    Button(action: {
-                        tapsCounter += 1
-                        
-                        if tapsCounter == 4 {
-                            appSettings.viewController = 3
-                        }
-                    }, label: {
-                        Text("Next")
-                            .fontWeight(.bold)
-                            .font(.system(size: 24))
-                            .padding()
-                            .background(Color.purple)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(10)
-                    })
-                    .padding(.trailing, 40)
-                }
-                .padding(.bottom, 30)
+                DialogueView(tapsCounter: $tapsCounter,
+                             message: globalMessages.messages3[tapsCounter],
+                             viewControllerDestination: 3)
             }
         }
     }

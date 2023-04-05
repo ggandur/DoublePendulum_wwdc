@@ -93,7 +93,6 @@ struct DoublePendulumView: View {
                         .foregroundColor(.blue)
                         .position(x: CGFloat(x2), y: CGFloat(y2))
                 }
-//                .frame(height: 800)
                 .onAppear {
                     let timer = Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true) { _ in
                         // First pendulum angles calculations
