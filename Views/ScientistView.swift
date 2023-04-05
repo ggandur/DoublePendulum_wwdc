@@ -19,6 +19,7 @@ struct ScientistView: View {
             VStack {
                 DialogueView(tapsCounter: $tapsCounter,
                              message: globalMessages.messages1[tapsCounter],
+                             tapsThreshold: 4,
                              messageTextColor: TextColor,
                              viewControllerDestination: 1)
             }

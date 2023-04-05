@@ -60,6 +60,7 @@ struct SinglePendulumView: View {
                 }
                 DialogueView(tapsCounter: $tapsCounter,
                              message: globalMessages.messages2[tapsCounter],
+                             tapsThreshold: 4,
                              messageTextColor: TextColor,
                              viewControllerDestination: 2)
             }

@@ -19,7 +19,7 @@ struct MyApp: App {
             case 2:
                 DoublePendulumDemonstrationView().environmentObject(appSettings)
             case 3:
-                DoublePendulumView()
+                DoublePendulumView().environmentObject(appSettings)
             default:
                 ScientistView().environmentObject(appSettings)
             }

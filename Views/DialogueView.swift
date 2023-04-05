@@ -10,9 +10,10 @@ import SwiftUI
 struct DialogueView: View {
     @Binding var tapsCounter: Int
 
-    var message: String
-    var messageTextColor: Color
-    var viewControllerDestination: Int
+    let message: String
+    let tapsThreshold: Int
+    let messageTextColor: Color
+    let viewControllerDestination: Int
 
     var body: some View {
         Text(message)
@@ -33,7 +34,7 @@ struct DialogueView: View {
             }
             Spacer()
             NextButton(tapsCounter: $tapsCounter,
-                       viewControllerDestination: viewControllerDestination)
+                       tapsThreshold: tapsThreshold, viewControllerDestination: viewControllerDestination)
         }
     }
 }

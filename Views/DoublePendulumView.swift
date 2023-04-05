@@ -29,8 +29,9 @@ struct DoublePendulumView: View {
     @State var angle3Acceleration: Double = 0
     @State var angle4Acceleration: Double = 0
 
-    @State var buttonText: String = "Start Simulation"
+    @State var buttonName: String = "play.circle.fill"
     @State var tapsCounter: Int = 0
+    @State var toggleNext: Bool = false
 
     var body: some View {
         let screenWidthCenter = Double(UIScreen.main.bounds.width) / 2
@@ -120,37 +121,29 @@ struct DoublePendulumView: View {
                                     angle3Acceleration = 0.0
                                     angle4Acceleration = 0.0
                                 }, label: {
-                                    Text("Reset Angles")
-                                        .fontWeight(.bold)
-                                        .font(.system(size: 24))
-                                        .padding()
-                                        .background(Color.purple.opacity(0.8))
-                                        .foregroundColor(Color.white)
-                                        .cornerRadius(10)
-                                        .padding(.leading, 50)
+                                    Image(systemName: "arrow.clockwise.circle.fill")
+                                        .resizable()
+                                        .frame(width: 80, height: 80)
+                                        .foregroundColor(Color.purple.opacity(0.8))
                                 })
                                 Spacer()
-                                    .frame(width: 250)
                                 Button(action: {
                                     isSimulationStarted.toggle()
+                                    toggleNext = true
                                     if isSimulationStarted {
-                                        buttonText = "Pause Simulation"
+                                        buttonName = "pause.circle.fill"
                                     } else {
-                                        buttonText = "Resume Simulation"
+                                        buttonName = "play.circle.fill"
                                     }
                                 }, label: {
-                                    Text("\(buttonText)")
-                                        .fontWeight(.bold)
-                                        .font(.system(size: 24))
-                                        .padding()
-                                        .background(Color.purple.opacity(0.8))
-                                        .foregroundColor(Color.white)
-                                        .cornerRadius(10)
-                                        .padding(.trailing, 50)
+                                    Image(systemName: "\(buttonName)")
+                                        .resizable()
+                                        .frame(width: 80, height: 80)
+                                        .foregroundColor(Color.purple.opacity(0.8))
                                 })
-                                .frame(width: 300)
                             }
-                            .padding(.top, 20)
+                            .frame(width: 650)
+                            .padding(.top, 40)
                             Spacer()
                             Image("Professora")
                                 .resizable()
@@ -160,8 +153,11 @@ struct DoublePendulumView: View {
                             HStack {
                                 Spacer()
                                 NextButton(tapsCounter: $tapsCounter,
-                                           viewControllerDestination: 3)
+                                           tapsThreshold: 3,
+                                           viewControllerDestination: 0,
+                                           toggleNext: toggleNext)
                             }
+                            .frame(height: 80)
                         }
                     }
                 }
@@ -220,6 +216,7 @@ struct DoublePendulumView: View {
                         .frame(height: 400)
                     DialogueView(tapsCounter: $tapsCounter,
                                  message: globalMessages.messages4[tapsCounter],
+                                 tapsThreshold: 4,
                                  messageTextColor: InfoColor,
                                  viewControllerDestination: 3)
                 }

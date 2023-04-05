@@ -11,25 +11,33 @@ struct NextButton: View {
     @EnvironmentObject var appSettings: AppSettings
     @Binding var tapsCounter: Int
 
-    var viewControllerDestination: Int
+    let tapsThreshold: Int
+    let viewControllerDestination: Int
+
+    var toggleNext: Bool? = true
 
     var body: some View {
-        Button(action: {
-            tapsCounter += 1
+        if let toggleNext = toggleNext {
+            if toggleNext {
+                Button(action: {
+                    tapsCounter += 1
+                    print(tapsCounter)
 
-            if tapsCounter == 4 {
-                appSettings.viewController = viewControllerDestination
+                    if tapsCounter == tapsThreshold {
+                        appSettings.viewController = viewControllerDestination
+                    }
+                }, label: {
+                    Text("Next")
+                        .fontWeight(.bold)
+                        .font(.system(size: 24))
+                        .padding()
+                        .background(HighlightColor)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                })
+                .padding(.trailing, 40)
+                .padding(.bottom, 20)
             }
-        }, label: {
-            Text("Next")
-                .fontWeight(.bold)
-                .font(.system(size: 24))
-                .padding()
-                .background(HighlightColor)
-                .foregroundColor(Color.white)
-                .cornerRadius(10)
-        })
-        .padding(.trailing, 40)
-        .padding(.bottom, 20)
+        }
     }
 }
