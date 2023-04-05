@@ -15,18 +15,19 @@ struct ScientistView: View {
 
     var body: some View {
         ZStack {
-            Color(red: 0.85, green: 0.65, blue: 0.95)
-                .ignoresSafeArea()
+            BackgroundColor()
             VStack {
                 Text("\(globalMessages.messages1[tapsCounter])")
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .font(.system(size: 36))
-                    .frame(width: 700, height: 500, alignment: .center)
+                    .frame(width: 700, height: 300, alignment: .center)
+                Spacer()
                 Image("Professora")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 500, height: 500)
+                    .frame(height: 300)
+                Spacer()
                 HStack {
                     if tapsCounter != 0 {
                         Button(action: {

@@ -28,8 +28,7 @@ struct SinglePendulumView: View {
         let y1: Double = line1 * cos(angle1) + 100
 
         ZStack {
-            Color(red: 0.85, green: 0.65, blue: 0.95)
-                .ignoresSafeArea()
+            BackgroundColor()
             VStack {
                 ZStack {
                     // First Pendulum

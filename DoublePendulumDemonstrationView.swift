@@ -35,8 +35,7 @@ struct DoublePendulumDemonstrationView: View {
         let y2: Double = y1 + (line2 * cos(angle2))
 
         ZStack {
-            Color(red: 0.85, green: 0.65, blue: 0.95)
-                .ignoresSafeArea()
+            BackgroundColor()
             VStack {
                 ZStack {
                     // First Pendulum
@@ -99,7 +98,7 @@ struct DoublePendulumDemonstrationView: View {
                 Image("Professora")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 500, height: 300)
+                    .frame(height: 300)
                 HStack {
                     if tapsCounter != 0 {
                         Button(action: {

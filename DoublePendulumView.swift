@@ -37,7 +37,7 @@ struct DoublePendulumView: View {
         let gravity = 0.1
 
         let x1: Double = line1 * sin(angle1) + screenWidthCenter
-        let y1: Double = line1 * cos(angle1) + 350
+        let y1: Double = line1 * cos(angle1) + 150
         let x2: Double = x1 + (line2 * sin(angle2))
         let y2: Double = y1 + (line2 * cos(angle2))
 
@@ -45,18 +45,17 @@ struct DoublePendulumView: View {
         let secondVertexMass2: Double = 25
 
         let x1b: Double = line1 * sin(angle3) + screenWidthCenter
-        let y1b: Double = line1 * cos(angle3) + 350
+        let y1b: Double = line1 * cos(angle3) + 150
         let x2b: Double = x1b + (line2 * sin(angle4))
         let y2b: Double = y1b + (line2 * cos(angle4))
 
         ZStack {
-            Color(red: 0.85, green: 0.65, blue: 0.95)
-                .ignoresSafeArea()
+            BackgroundColor()
             VStack {
                 ZStack {
                     // First Pendulum
                     Path { path in
-                        let startingPoint = CGPoint(x: screenWidthCenter, y: 350)
+                        let startingPoint = CGPoint(x: screenWidthCenter, y: 150)
                         let center1 = CGPoint(x: CGFloat(x1b), y: CGFloat(y1b))
                         let center2 = CGPoint(x: CGFloat(x2b), y: CGFloat(y2b))
                         path.move(to: startingPoint)
@@ -76,7 +75,7 @@ struct DoublePendulumView: View {
 
                     // Second Pendulum
                     Path { path in
-                        let startingPoint = CGPoint(x: screenWidthCenter, y: 350)
+                        let startingPoint = CGPoint(x: screenWidthCenter, y: 150)
                         let center1 = CGPoint(x: CGFloat(x1), y: CGFloat(y1))
                         let center2 = CGPoint(x: CGFloat(x2), y: CGFloat(y2))
                         path.move(to: startingPoint)
@@ -94,6 +93,7 @@ struct DoublePendulumView: View {
                         .foregroundColor(.blue)
                         .position(x: CGFloat(x2), y: CGFloat(y2))
                 }
+//                .frame(height: 800)
                 .onAppear {
                     let timer = Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true) { _ in
                         // First pendulum angles calculations
@@ -158,8 +158,9 @@ struct DoublePendulumView: View {
                             .background(Color.purple)
                             .foregroundColor(Color.white)
                             .cornerRadius(10)
+                            .padding(.leading, 50)
                     })
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 50))
+                    Spacer()
                     Button(action: {
                         angle1 = .pi / 1.95
                         angle2 = .pi / 1.85
@@ -183,10 +184,18 @@ struct DoublePendulumView: View {
                             .background(Color.purple)
                             .foregroundColor(Color.white)
                             .cornerRadius(10)
+                            .padding(.trailing, 50)
                     })
-                    .padding(EdgeInsets(top: 0, leading: 50, bottom: 100, trailing: 0))
                 }
+                .padding()
+                Spacer()
             }
         }
+    }
+}
+
+struct DoublePendulumView_Previews: PreviewProvider {
+    static var previews: some View {
+        DoublePendulumView().environmentObject(AppSettings())
     }
 }
