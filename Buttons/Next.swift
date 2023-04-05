@@ -21,7 +21,6 @@ struct NextButton: View {
             if toggleNext {
                 Button(action: {
                     tapsCounter += 1
-                    print(tapsCounter)
 
                     if tapsCounter == tapsThreshold {
                         appSettings.viewController = viewControllerDestination

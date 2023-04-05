@@ -12,7 +12,9 @@ struct BackButton: View {
 
     var body: some View {
         Button(action: {
-            tapsCounter -= 1
+            if tapsCounter > 0 {
+                tapsCounter -= 1
+            }
         }, label: {
             Text("Back")
                 .fontWeight(.bold)

@@ -58,7 +58,23 @@ struct DoublePendulumView: View {
         ZStack {
             BackgroundColor()
             if tapsCounter < 2 {
-                Color(red: 0, green: 0, blue: 0, opacity: 0.7)
+                VStack {
+                    HStack {
+                        Image(systemName: "arrow.clockwise.circle.fill")
+                            .resizable()
+                            .frame(width: 80, height: 80)
+                            .foregroundColor(Color.purple.opacity(0.8))
+                        Spacer()
+                        Image(systemName: "\(buttonName)")
+                            .resizable()
+                            .frame(width: 80, height: 80)
+                            .foregroundColor(Color.purple.opacity(0.8))
+                    }
+                    .frame(width: 650)
+                    .padding(.top, 40)
+                    Spacer()
+                }
+                Color(red: 0, green: 0, blue: 0, opacity: 0.6)
                     .ignoresSafeArea()
             }
             VStack {
@@ -149,7 +165,6 @@ struct DoublePendulumView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 300)
-                                .padding(.bottom, 20)
                             HStack {
                                 Spacer()
                                 NextButton(tapsCounter: $tapsCounter,
@@ -213,7 +228,7 @@ struct DoublePendulumView: View {
             if tapsCounter < 2 {
                 VStack {
                     Spacer()
-                        .frame(height: 400)
+                        .frame(height: 440)
                     DialogueView(tapsCounter: $tapsCounter,
                                  message: globalMessages.messages4[tapsCounter],
                                  tapsThreshold: 4,
