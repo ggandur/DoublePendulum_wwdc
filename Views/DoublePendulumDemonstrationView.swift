@@ -39,42 +39,27 @@ struct DoublePendulumDemonstrationView: View {
             VStack {
                 ZStack {
                     // First Pendulum
-                    Path { path in
-                        let startingPoint = CGPoint(x: screenWidthCenter, y: 150)
-                        let center1 = CGPoint(x: CGFloat(x1), y: CGFloat(y1))
-                        let center2 = CGPoint(x: CGFloat(x2), y: CGFloat(y2))
-                        path.move(to: startingPoint)
-                        path.addLine(to: center1)
-                        path.move(to: center1)
-                        path.addLine(to: center2)
-                    }
-                    .stroke(Color.black, lineWidth: 2)
-                    Circle()
-                        .frame(width: CGFloat(firstVertexMass), height: CGFloat(firstVertexMass))
-                        .foregroundColor(.blue)
-                        .position(x: CGFloat(x1), y: CGFloat(y1))
-                    Circle()
-                        .frame(width: CGFloat(secondVertexMass), height: CGFloat(secondVertexMass))
-                        .foregroundColor(.blue)
-                        .position(x: CGFloat(x2), y: CGFloat(y2))
+                    Pendulum(color: Color.blue,
+                             startingX: 150,
+                             x1: x1,
+                             y1: y1,
+                             x2: x2,
+                             y2: y2)
                 }
                 .onAppear {
                     var timer: Timer?
                     timer = Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true) { _ in
                         // First pendulum angles calculations
-                        var num1: Double = -gravity * (2 * firstVertexMass * secondVertexMass) * sin(angle1)
-                        var num2: Double = -secondVertexMass * gravity * sin(angle1 - 2 * angle2)
-                        var num3: Double = -2 * sin(angle1 - angle2) * secondVertexMass
-                        var num4: Double = angle2Velocity * angle2Velocity * line2 + angle1Velocity * angle1Velocity * line1 * cos(angle1 - angle2)
-                        var denominator: Double = line1 * (2 * firstVertexMass + secondVertexMass - secondVertexMass * cos(2 * angle1 - 2 * angle2))
-                        angle1Acceleration = (num1 + num2 + num3 * num4) / denominator
-
-                        num1 = 2 * sin(angle1 - angle2)
-                        num2 = (angle1Velocity * angle1Velocity * line1 * (firstVertexMass + secondVertexMass))
-                        num3 = gravity * (firstVertexMass + secondVertexMass) * cos(angle1)
-                        num4 = angle2Velocity * angle2Velocity * line2 * secondVertexMass * cos(angle1 - angle2)
-                        denominator = line2 * (2 * firstVertexMass + secondVertexMass - secondVertexMass * cos(2 * angle1 - 2 * angle2))
-                        angle2Acceleration = (num1 * (num2 + num3 + num4)) / denominator
+                        (angle1Acceleration,
+                         angle2Acceleration) = calculateAngles(gravity: gravity,
+                                                               firstVertexMass: firstVertexMass,
+                                                               secondVertexMass: secondVertexMass,
+                                                               angle1: angle1,
+                                                               angle2: angle2,
+                                                               angle1Velocity: angle1Velocity,
+                                                               angle2Velocity: angle2Velocity,
+                                                               line1: line1,
+                                                               line2: line2)
 
                         // First pendulum angles
                         angle1Velocity += angle1Acceleration

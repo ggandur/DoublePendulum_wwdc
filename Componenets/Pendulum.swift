@@ -10,10 +10,11 @@ import SwiftUI
 
 struct Pendulum: View {
     let screenWidthCenter = Double(UIScreen.main.bounds.width) / 2
-    let startingX: Double = 300
     let firstVertexMass: Double = 25
     let secondVertexMass: Double = 25
     let color: Color
+
+    let startingX: Double
     let x1, y1, x2, y2: Double
 
     var body: some View {

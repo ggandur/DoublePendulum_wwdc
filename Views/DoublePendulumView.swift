@@ -67,6 +67,7 @@ struct DoublePendulumView: View {
                 ZStack {
                     // First Pendulum
                     Pendulum(color: Color.red,
+                             startingX: 300,
                              x1: x1b,
                              y1: y1b,
                              x2: x2b,
@@ -74,6 +75,7 @@ struct DoublePendulumView: View {
 
                     // Second Pendulum
                     Pendulum(color: Color.blue,
+                             startingX: 300,
                              x1: x1,
                              y1: y1,
                              x2: x2,
