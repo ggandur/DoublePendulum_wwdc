@@ -35,12 +35,13 @@ struct DoublePendulumView: View {
 
     var body: some View {
         let screenWidthCenter = Double(UIScreen.main.bounds.width) / 2
-        let line1: Double = 170
-        let line2: Double = 170
+        let startingX: Double = 300
         let firstVertexMass: Double = 25
         let secondVertexMass: Double = 25
+
+        let line1: Double = 170
+        let line2: Double = 170
         let gravity = 0.1
-        let startingX: Double = 300
 
         let x1: Double = line1 * sin(angle1) + screenWidthCenter
         let y1: Double = line1 * cos(angle1) + startingX
@@ -58,108 +59,42 @@ struct DoublePendulumView: View {
         ZStack {
             BackgroundColor()
             if tapsCounter < 2 {
-                VStack {
-                    HStack {
-                        Image(systemName: "arrow.clockwise.circle.fill")
-                            .resizable()
-                            .frame(width: 80, height: 80)
-                            .foregroundColor(Color.purple.opacity(0.8))
-                        Spacer()
-                        Image(systemName: "\(buttonName)")
-                            .resizable()
-                            .frame(width: 80, height: 80)
-                            .foregroundColor(Color.purple.opacity(0.8))
-                    }
-                    .frame(width: 650)
-                    .padding(.top, 40)
-                    Spacer()
-                }
+                HeaderPlaceholder()
                 Color(red: 0, green: 0, blue: 0, opacity: 0.6)
                     .ignoresSafeArea()
             }
             VStack {
                 ZStack {
                     // First Pendulum
-                    Path { path in
-                        let startingPoint = CGPoint(x: screenWidthCenter, y: startingX)
-                        let center1 = CGPoint(x: CGFloat(x1b), y: CGFloat(y1b))
-                        let center2 = CGPoint(x: CGFloat(x2b), y: CGFloat(y2b))
-                        path.move(to: startingPoint)
-                        path.addLine(to: center1)
-                        path.move(to: center1)
-                        path.addLine(to: center2)
-                    }
-                    .stroke(Color.black, lineWidth: 2)
-                    Circle()
-                        .frame(width: CGFloat(firstVertexMass2), height: CGFloat(firstVertexMass2))
-                        .foregroundColor(.red)
-                        .position(x: CGFloat(x1b), y: CGFloat(y1b))
-                    Circle()
-                        .frame(width: CGFloat(secondVertexMass2), height: CGFloat(secondVertexMass2))
-                        .foregroundColor(.red)
-                        .position(x: CGFloat(x2b), y: CGFloat(y2b))
+                    Pendulum(color: Color.red,
+                             x1: x1b,
+                             y1: y1b,
+                             x2: x2b,
+                             y2: y2b)
 
                     // Second Pendulum
-                    Path { path in
-                        let startingPoint = CGPoint(x: screenWidthCenter, y: startingX)
-                        let center1 = CGPoint(x: CGFloat(x1), y: CGFloat(y1))
-                        let center2 = CGPoint(x: CGFloat(x2), y: CGFloat(y2))
-                        path.move(to: startingPoint)
-                        path.addLine(to: center1)
-                        path.move(to: center1)
-                        path.addLine(to: center2)
-                    }
-                    .stroke(Color.black, lineWidth: 2)
-                    Circle()
-                        .frame(width: CGFloat(firstVertexMass), height: CGFloat(firstVertexMass))
-                        .foregroundColor(.blue)
-                        .position(x: CGFloat(x1), y: CGFloat(y1))
-                    Circle()
-                        .frame(width: CGFloat(secondVertexMass), height: CGFloat(secondVertexMass))
-                        .foregroundColor(.blue)
-                        .position(x: CGFloat(x2), y: CGFloat(y2))
+                    Pendulum(color: Color.blue,
+                             x1: x1,
+                             y1: y1,
+                             x2: x2,
+                             y2: y2)
                     if tapsCounter >= 2 {
                         VStack {
-                            HStack {
-                                Button(action: {
-                                    angle1 = .pi / 1.95
-                                    angle2 = .pi / 1.85
-                                    angle3 = .pi / 1.88
-                                    angle4 = .pi / 1.78
-
-                                    angle1Velocity = 0.0
-                                    angle2Velocity = 0.0
-                                    angle3Velocity = 0.0
-                                    angle4Velocity = 0.0
-
-                                    angle1Acceleration = 0.0
-                                    angle2Acceleration = 0.0
-                                    angle3Acceleration = 0.0
-                                    angle4Acceleration = 0.0
-                                }, label: {
-                                    Image(systemName: "arrow.clockwise.circle.fill")
-                                        .resizable()
-                                        .frame(width: 80, height: 80)
-                                        .foregroundColor(Color.purple.opacity(0.8))
-                                })
-                                Spacer()
-                                Button(action: {
-                                    isSimulationStarted.toggle()
-                                    toggleNext = true
-                                    if isSimulationStarted {
-                                        buttonName = "pause.circle.fill"
-                                    } else {
-                                        buttonName = "play.circle.fill"
-                                    }
-                                }, label: {
-                                    Image(systemName: "\(buttonName)")
-                                        .resizable()
-                                        .frame(width: 80, height: 80)
-                                        .foregroundColor(Color.purple.opacity(0.8))
-                                })
-                            }
-                            .frame(width: 650)
-                            .padding(.top, 40)
+                            HeaderControls(angle1: $angle1,
+                                           angle2: $angle2,
+                                           angle3: $angle3,
+                                           angle4: $angle4,
+                                           angle1Velocity: $angle1Velocity,
+                                           angle2Velocity: $angle2Velocity,
+                                           angle3Velocity: $angle3Velocity,
+                                           angle4Velocity: $angle4Velocity,
+                                           angle1Acceleration: $angle1Acceleration,
+                                           angle2Acceleration: $angle2Acceleration,
+                                           angle3Acceleration: $angle3Acceleration,
+                                           angle4Acceleration: $angle4Acceleration,
+                                           isSimulationStarted: $isSimulationStarted,
+                                           toggleNext: $toggleNext,
+                                           buttonName: $buttonName)
                             Spacer()
                             Image("Professora")
                                 .resizable()
@@ -179,34 +114,28 @@ struct DoublePendulumView: View {
                 .onAppear {
                     let timer = Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true) { _ in
                         // First pendulum angles calculations
-                        var num1: Double = -gravity * (2 * firstVertexMass * secondVertexMass) * sin(angle1)
-                        var num2: Double = -secondVertexMass * gravity * sin(angle1 - 2 * angle2)
-                        var num3: Double = -2 * sin(angle1 - angle2) * secondVertexMass
-                        var num4: Double = angle2Velocity * angle2Velocity * line2 + angle1Velocity * angle1Velocity * line1 * cos(angle1 - angle2)
-                        var denominator: Double = line1 * (2 * firstVertexMass + secondVertexMass - secondVertexMass * cos(2 * angle1 - 2 * angle2))
-                        angle1Acceleration = (num1 + num2 + num3 * num4) / denominator
-
-                        num1 = 2 * sin(angle1 - angle2)
-                        num2 = (angle1Velocity * angle1Velocity * line1 * (firstVertexMass + secondVertexMass))
-                        num3 = gravity * (firstVertexMass + secondVertexMass) * cos(angle1)
-                        num4 = angle2Velocity * angle2Velocity * line2 * secondVertexMass * cos(angle1 - angle2)
-                        denominator = line2 * (2 * firstVertexMass + secondVertexMass - secondVertexMass * cos(2 * angle1 - 2 * angle2))
-                        angle2Acceleration = (num1 * (num2 + num3 + num4)) / denominator
+                        (angle1Acceleration,
+                         angle2Acceleration) = calculateAngles(gravity: gravity,
+                                                               firstVertexMass: firstVertexMass,
+                                                               secondVertexMass: secondVertexMass,
+                                                               angle1: angle1,
+                                                               angle2: angle2,
+                                                               angle1Velocity: angle1Velocity,
+                                                               angle2Velocity: angle2Velocity,
+                                                               line1: line1,
+                                                               line2: line2)
 
                         // Second pendulum angles calculations
-                        var num5: Double = -gravity * (2 * firstVertexMass2 * secondVertexMass2) * sin(angle3)
-                        var num6: Double = -secondVertexMass2 * gravity * sin(angle3 - 2 * angle4)
-                        var num7: Double = -2 * sin(angle3 - angle4) * secondVertexMass2
-                        var num8: Double = angle4Velocity * angle4Velocity * line2 + angle3Velocity * angle3Velocity * line1 * cos(angle3 - angle4)
-                        var denominator2: Double = line1 * (2 * firstVertexMass2 + secondVertexMass2 - secondVertexMass2 * cos(2 * angle3 - 2 * angle4))
-                        angle3Acceleration = (num5 + num6 + num7 * num8) / denominator2
-
-                        num5 = 2 * sin(angle3 - angle4)
-                        num6 = (angle3Velocity * angle3Velocity * line1 * (firstVertexMass2 + secondVertexMass2))
-                        num7 = gravity * (firstVertexMass2 + secondVertexMass2) * cos(angle3)
-                        num8 = angle4Velocity * angle4Velocity * line2 * secondVertexMass2 * cos(angle3 - angle4)
-                        denominator2 = line2 * (2 * firstVertexMass2 + secondVertexMass2 - secondVertexMass2 * cos(2 * angle3 - 2 * angle4))
-                        angle4Acceleration = (num5 * (num6 + num7 + num8)) / denominator2
+                        (angle3Acceleration,
+                         angle4Acceleration) = calculateAngles(gravity: gravity,
+                                                               firstVertexMass: firstVertexMass2,
+                                                               secondVertexMass: secondVertexMass2,
+                                                               angle1: angle3,
+                                                               angle2: angle4,
+                                                               angle1Velocity: angle3Velocity,
+                                                               angle2Velocity: angle4Velocity,
+                                                               line1: line1,
+                                                               line2: line2)
 
                         if isSimulationStarted {
                             // First pendulum angles
