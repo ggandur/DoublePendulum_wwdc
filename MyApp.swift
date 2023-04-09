@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 class AppSettings: ObservableObject {
-    @Published var viewController: Int = 0
+    @Published var viewController: Int = -1
 }
 
 @main
@@ -12,6 +12,8 @@ struct MyApp: App {
     var body: some Scene {
         WindowGroup {
             switch appSettings.viewController {
+            case -1:
+                HomeView().environmentObject(appSettings)
             case 0:
                 ScientistView().environmentObject(appSettings)
             case 1:
@@ -27,7 +29,7 @@ struct MyApp: App {
             case 6:
                 PlanetView().environmentObject(appSettings)
             default:
-                ScientistView().environmentObject(appSettings)
+                HomeView().environmentObject(appSettings)
             }
         }
     }

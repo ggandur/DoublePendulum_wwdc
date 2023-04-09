@@ -10,8 +10,7 @@ import SwiftUI
 
 struct BackgroundColor: View {
     var body: some View {
-        Color(red: 1.0, green: 0.64, blue: 0.99)
-            .ignoresSafeArea()
+        Image("Background")
     }
 }
 

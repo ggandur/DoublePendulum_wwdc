@@ -118,8 +118,9 @@ struct DoublePendulumView: View {
                                            viewControllerDestination: 4,
                                            toggleNext: toggleNext)
                             }
-                            .frame(height: 80)
+                            .frame(height: 90)
                         }
+                        .padding()
                     }
                 }
                 .onAppear {
@@ -176,6 +177,7 @@ struct DoublePendulumView: View {
                                  viewControllerDestination: 3,
                                  images: teacherImages)
                 }
+                .padding()
             }
         }
     }

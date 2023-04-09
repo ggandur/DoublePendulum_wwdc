@@ -30,6 +30,7 @@ struct VotingView: View {
                              viewControllerDestination: 6,
                              images: teacherImages)
             }
+            .padding()
         }
     }
 }

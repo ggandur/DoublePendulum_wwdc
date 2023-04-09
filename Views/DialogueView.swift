@@ -46,7 +46,7 @@ struct DialogueView: View {
                 .scaledToFit()
                 .frame(height: 300)
         default:
-            Image("Professora")
+            Image("ProfessoraNormal")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 300)

@@ -15,15 +15,15 @@ struct HeaderPlaceholder: View {
                 Image(systemName: "arrow.clockwise.circle.fill")
                     .resizable()
                     .frame(width: 80, height: 80)
-                    .foregroundColor(Color.purple.opacity(0.8))
+                    .foregroundColor(Color.white)
                 Spacer()
                 Image(systemName: "play.circle.fill")
                     .resizable()
                     .frame(width: 80, height: 80)
-                    .foregroundColor(Color.purple.opacity(0.8))
+                    .foregroundColor(Color.white)
             }
             .frame(width: 650)
-            .padding(.top, 40)
+            .padding(.top, 55)
             Spacer()
         }
     }

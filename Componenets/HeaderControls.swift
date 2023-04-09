@@ -49,7 +49,7 @@ struct HeaderControls: View {
                 Image(systemName: "arrow.clockwise.circle.fill")
                     .resizable()
                     .frame(width: 80, height: 80)
-                    .foregroundColor(Color.purple.opacity(0.8))
+                    .foregroundColor(Color.white)
             })
             Spacer()
             Button(action: {
@@ -64,7 +64,7 @@ struct HeaderControls: View {
                 Image(systemName: "\(buttonName)")
                     .resizable()
                     .frame(width: 80, height: 80)
-                    .foregroundColor(Color.purple.opacity(0.8))
+                    .foregroundColor(Color.white)
             })
         }
         .frame(width: 650)

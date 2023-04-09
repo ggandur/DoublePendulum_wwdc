@@ -27,6 +27,7 @@ struct ScientistView: View {
                              viewControllerDestination: 1,
                              images: teacherImages)
             }
+            .padding()
         }
     }
 }

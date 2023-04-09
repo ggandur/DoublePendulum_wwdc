@@ -79,6 +79,7 @@ struct DoublePendulumDemonstrationView: View {
                              viewControllerDestination: 3,
                              images: teacherImages)
             }
+            .padding()
         }
     }
 }

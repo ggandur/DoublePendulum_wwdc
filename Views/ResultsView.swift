@@ -26,6 +26,7 @@ struct ResultsView: View {
                              viewControllerDestination: 5,
                              images: teacherImages)
             }
+            .padding()
         }
     }
 }
