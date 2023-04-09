@@ -13,9 +13,10 @@ struct DoublePendulumDemonstrationView: View {
     @EnvironmentObject var appSettings: AppSettings
 
     @State var tapsCounter: Int = 0
-
     @State var angle1: Double = .pi / 1.88
     @State var angle2: Double = .pi / 1.78
+
+    let teacherImages = ["ProfessoraEnsinando", "ProfessoraFalando", "ProfessoraLuz", "ProfessoraConvencida"]
 
     var body: some View {
         let screenWidthCenter = Double(UIScreen.main.bounds.width) / 2
@@ -75,7 +76,7 @@ struct DoublePendulumDemonstrationView: View {
                              message: globalMessages.messages3[tapsCounter],
                              tapsThreshold: 4,
                              messageTextColor: TextColor,
-                             viewControllerDestination: 3)
+                             viewControllerDestination: 3, images: teacherImages)
             }
         }
     }

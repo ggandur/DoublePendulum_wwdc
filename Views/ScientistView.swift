@@ -13,6 +13,8 @@ struct ScientistView: View {
     @EnvironmentObject var appSettings: AppSettings
     @State var tapsCounter: Int = 0
 
+    let teacherImages = ["ProfessoraFeliz", "ProfessoraFalando", "ProfessoraLuz", "ProfessoraConvencida"]
+
     var body: some View {
         ZStack {
             BackgroundColor()
@@ -21,7 +23,7 @@ struct ScientistView: View {
                              message: globalMessages.messages1[tapsCounter],
                              tapsThreshold: 4,
                              messageTextColor: TextColor,
-                             viewControllerDestination: 1)
+                             viewControllerDestination: 1, images: teacherImages)
             }
         }
     }

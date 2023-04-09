@@ -50,9 +50,14 @@ class GlobalMessages: ObservableObject {
         "Now start the simulation and see how their trajectories will behave!",
 
         "",
+    ]
+    @Published var messages5 = [
+        "Did you see how a very small change can result in a very great impact?",
 
-        "",
+        "What if I told you that our actions impact the world in the very same way?",
 
-        "",
+        "Sometimes people feel discouraged to take actions as they imagine it would not make any difference!",
+
+        "Every action we take, no matter how small, is capable of changing the world we live in!",
     ]
 }

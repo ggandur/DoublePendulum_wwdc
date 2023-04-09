@@ -33,6 +33,8 @@ struct DoublePendulumView: View {
     @State var tapsCounter: Int = 0
     @State var toggleNext: Bool = false
 
+    let teacherImages = ["ProfessoraEnsinando", "ProfessoraFalando", "ProfessoraNormal", "ProfessoraNormal"]
+
     var body: some View {
         let screenWidthCenter = Double(UIScreen.main.bounds.width) / 2
         let startingX: Double = 300
@@ -98,10 +100,17 @@ struct DoublePendulumView: View {
                                            toggleNext: $toggleNext,
                                            buttonName: $buttonName)
                             Spacer()
-                            Image("Professora")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 300)
+                            if toggleNext {
+                                Image("ProfessoraSatisfeita")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 300)
+                            } else {
+                                Image("ProfessoraNormal")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 300)
+                            }
                             HStack {
                                 Spacer()
                                 NextButton(tapsCounter: $tapsCounter,
@@ -164,7 +173,7 @@ struct DoublePendulumView: View {
                                  message: globalMessages.messages4[tapsCounter],
                                  tapsThreshold: 4,
                                  messageTextColor: InfoColor,
-                                 viewControllerDestination: 3)
+                                 viewControllerDestination: 3, images: teacherImages)
                 }
             }
         }

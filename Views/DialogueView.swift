@@ -14,6 +14,7 @@ struct DialogueView: View {
     let tapsThreshold: Int
     let messageTextColor: Color
     let viewControllerDestination: Int
+    let images: [String]
 
     var body: some View {
         Text(message)
@@ -23,10 +24,33 @@ struct DialogueView: View {
             .foregroundColor(messageTextColor)
             .frame(width: 700, height: 300, alignment: .center)
         Spacer()
-        Image("Professora")
-            .resizable()
-            .scaledToFit()
-            .frame(height: 300)
+        switch tapsCounter {
+        case 0:
+            Image("\(images[0])")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 300)
+        case 1:
+            Image("\(images[1])")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 300)
+        case 2:
+            Image("\(images[2])")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 300)
+        case 3:
+            Image("\(images[3])")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 300)
+        default:
+            Image("Professora")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 300)
+        }
         Spacer()
         HStack {
             if tapsCounter != 0 {
