@@ -63,7 +63,8 @@ struct SinglePendulumView: View {
                              message: globalMessages.messages2[tapsCounter],
                              tapsThreshold: 4,
                              messageTextColor: TextColor,
-                             viewControllerDestination: 2, images: teacherImages)
+                             viewControllerDestination: 2,
+                             images: teacherImages)
             }
         }
     }

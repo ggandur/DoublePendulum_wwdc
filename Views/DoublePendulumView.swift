@@ -115,7 +115,7 @@ struct DoublePendulumView: View {
                                 Spacer()
                                 NextButton(tapsCounter: $tapsCounter,
                                            tapsThreshold: 3,
-                                           viewControllerDestination: 0,
+                                           viewControllerDestination: 4,
                                            toggleNext: toggleNext)
                             }
                             .frame(height: 80)
@@ -173,7 +173,8 @@ struct DoublePendulumView: View {
                                  message: globalMessages.messages4[tapsCounter],
                                  tapsThreshold: 4,
                                  messageTextColor: InfoColor,
-                                 viewControllerDestination: 3, images: teacherImages)
+                                 viewControllerDestination: 3,
+                                 images: teacherImages)
                 }
             }
         }

@@ -76,7 +76,8 @@ struct DoublePendulumDemonstrationView: View {
                              message: globalMessages.messages3[tapsCounter],
                              tapsThreshold: 4,
                              messageTextColor: TextColor,
-                             viewControllerDestination: 3, images: teacherImages)
+                             viewControllerDestination: 3,
+                             images: teacherImages)
             }
         }
     }

@@ -40,7 +40,7 @@ class GlobalMessages: ObservableObject {
 
         "Very small changes to the variables at the start can result in totally different results at the end.",
 
-        "We call this behavior chaotic",
+        "We call this behavior chaotic.",
 
         "",
     ]
@@ -56,8 +56,22 @@ class GlobalMessages: ObservableObject {
 
         "What if I told you that our actions impact the world in the very same way?",
 
+        "",
+    ]
+    @Published var messages6 = [
         "Sometimes people feel discouraged to take actions as they imagine it would not make any difference!",
 
+        "A great example of this in our society is with voting in democracies.",
+
+        "It's hard for people to see the impact their votes will ultimately have.",
+
+        "",
+    ]
+    @Published var messages7 = [
+        "So if you ever feel discouraged or struggle to take action, remember what pendulums thought you today!",
+
         "Every action we take, no matter how small, is capable of changing the world we live in!",
+
+        "",
     ]
 }

@@ -11,6 +11,7 @@ import SwiftUI
 struct ScientistView: View {
     @ObservedObject var globalMessages = GlobalMessages.shared
     @EnvironmentObject var appSettings: AppSettings
+
     @State var tapsCounter: Int = 0
 
     let teacherImages = ["ProfessoraFeliz", "ProfessoraFalando", "ProfessoraLuz", "ProfessoraConvencida"]
@@ -23,7 +24,8 @@ struct ScientistView: View {
                              message: globalMessages.messages1[tapsCounter],
                              tapsThreshold: 4,
                              messageTextColor: TextColor,
-                             viewControllerDestination: 1, images: teacherImages)
+                             viewControllerDestination: 1,
+                             images: teacherImages)
             }
         }
     }
