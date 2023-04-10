@@ -72,6 +72,10 @@ class GlobalMessages: ObservableObject {
 
         "Every action we take, no matter how small, is capable of changing the world we live in!",
 
+        "How about trying the Sandbox mode now?",
+
+        "",
+
         "",
     ]
 }

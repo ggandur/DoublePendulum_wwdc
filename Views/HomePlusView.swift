@@ -88,7 +88,7 @@ struct HomePlusView: View {
                             Color(red: 0.53, green: 0.36, blue: 1.0)
                                 .frame(width: 250, height: 90)
                                 .cornerRadius(10)
-                            Text("SandBox")
+                            Text("Sandbox")
                                 .fontWeight(.bold)
                                 .font(.system(size: 42))
                                 .padding()
