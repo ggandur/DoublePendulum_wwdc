@@ -24,6 +24,9 @@ struct HeaderControls: View {
     @Binding var angle3Acceleration: Double
     @Binding var angle4Acceleration: Double
 
+    @Binding var line1: Double
+    @Binding var gravity: Double
+
     @Binding var isSimulationStarted: Bool
     @Binding var toggleNext: Bool
     @Binding var buttonName: String
@@ -39,7 +42,7 @@ struct HeaderControls: View {
                 } else {
                     buttonName = "play.circle.fill"
                 }
-                
+
                 angle1 = .pi / 1.95
                 angle2 = .pi / 1.85
                 angle3 = .pi / 1.88
@@ -54,6 +57,9 @@ struct HeaderControls: View {
                 angle2Acceleration = 0.0
                 angle3Acceleration = 0.0
                 angle4Acceleration = 0.0
+
+                line1 = 170
+                gravity = 0.1
             }, label: {
                 Image(systemName: "arrow.clockwise.circle.fill")
                     .resizable()

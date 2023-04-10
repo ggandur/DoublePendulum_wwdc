@@ -29,6 +29,10 @@ struct DoublePendulumView: View {
     @State var angle3Acceleration: Double = 0
     @State var angle4Acceleration: Double = 0
 
+    @State var line1: Double = 170
+    @State var line2: Double = 170
+    @State var gravity = 0.1
+
     @State var buttonName: String = "play.circle.fill"
     @State var tapsCounter: Int = 0
     @State var toggleNext: Bool = false
@@ -41,10 +45,6 @@ struct DoublePendulumView: View {
         let startingX: Double = 300
         let firstVertexMass: Double = 25
         let secondVertexMass: Double = 25
-
-        let line1: Double = 170
-        let line2: Double = 170
-        let gravity = 0.1
 
         let x1: Double = line1 * sin(angle1) + screenWidthCenter
         let y1: Double = line1 * cos(angle1) + startingX
@@ -97,6 +97,8 @@ struct DoublePendulumView: View {
                                            angle2Acceleration: $angle2Acceleration,
                                            angle3Acceleration: $angle3Acceleration,
                                            angle4Acceleration: $angle4Acceleration,
+                                           line1: $line1,
+                                           gravity: $gravity,
                                            isSimulationStarted: $isSimulationStarted,
                                            toggleNext: $toggleNext,
                                            buttonName: $buttonName,

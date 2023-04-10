@@ -37,7 +37,7 @@ struct PlanetView: View {
                              message: globalMessages.messages7[tapsCounter],
                              tapsThreshold: 2,
                              messageTextColor: InfoColor,
-                             viewControllerDestination: -1,
+                             viewControllerDestination: 7,
                              images: teacherImages)
             }
             .padding()
