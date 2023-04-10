@@ -14,7 +14,7 @@ struct PlanetView: View {
     @State var tapsCounter: Int = 0
     @State private var isRotating = 0.0
 
-    let teacherImages = ["ProfessoraLuz", "ProfessoraFeliz", "ProfessoraNormal", "ProfessoraNormal"]
+    let teacherImages = ["ProfessoraLuz", "ProfessoraFelizRosa", "ProfessoraNormal", "ProfessoraNormal"]
 
     var body: some View {
         ZStack {

@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Gabriel Gandur on 09/04/23.
 //
@@ -67,7 +67,7 @@ struct HomeView: View {
                 Button(action: {
                     appSettings.viewController = 0
                 }, label: {
-                    ZStack{
+                    ZStack {
                         Color(red: 0.53, green: 0.36, blue: 1.0)
                             .frame(width: 250, height: 90)
                             .cornerRadius(10)
