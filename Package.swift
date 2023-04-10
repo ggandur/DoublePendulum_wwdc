@@ -24,13 +24,9 @@ let package = Package(
             accentColor: .presetColor(.teal),
             supportedDeviceFamilies: [
                 .pad,
-                .phone,
             ],
             supportedInterfaceOrientations: [
                 .portrait,
-                .landscapeRight,
-                .landscapeLeft,
-                .portraitUpsideDown(.when(deviceFamilies: [.pad])),
             ]
         ),
     ],

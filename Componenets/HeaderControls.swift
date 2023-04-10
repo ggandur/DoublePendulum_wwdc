@@ -27,10 +27,19 @@ struct HeaderControls: View {
     @Binding var isSimulationStarted: Bool
     @Binding var toggleNext: Bool
     @Binding var buttonName: String
+    @Binding var isPlaying: Bool
 
     var body: some View {
         HStack {
             Button(action: {
+                isSimulationStarted = false
+                isPlaying = false
+                if isSimulationStarted {
+                    buttonName = "pause.circle.fill"
+                } else {
+                    buttonName = "play.circle.fill"
+                }
+                
                 angle1 = .pi / 1.95
                 angle2 = .pi / 1.85
                 angle3 = .pi / 1.88
@@ -54,6 +63,7 @@ struct HeaderControls: View {
             Spacer()
             Button(action: {
                 isSimulationStarted.toggle()
+                isPlaying.toggle()
                 toggleNext = true
                 if isSimulationStarted {
                     buttonName = "pause.circle.fill"

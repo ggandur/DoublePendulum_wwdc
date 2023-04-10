@@ -14,7 +14,7 @@ class GlobalMessages: ObservableObject {
     @Published var messages1 = [
         "Hello, nice to meet you!\nMy name is Ana and I’m a math teacher!",
 
-        "Despite being a teacher, I was also a student at one time and, as such, I have always been fascinated by how simple mathematical concepts can be, or sometimes become very complex.",
+        "When I was younger, I was always fascinated by how simple mathematical concepts can be, or sometimes become very complex.",
 
         "And something that I’ve learned about these concepts is that they can also teach us lessons about our lives!",
 
