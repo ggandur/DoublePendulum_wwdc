@@ -115,6 +115,29 @@ struct SandBoxView: View {
                             })
                             .padding(.leading, 20)
                             Spacer()
+                            ZStack {
+                                Color(.yellow)
+                                    .opacity(0.3)
+                                    .frame(width: 630, height: 100)
+                                    .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(.yellow, lineWidth: 5)
+                                    )
+                                    .padding(.trailing, 20)
+                                HStack {
+                                    Image(systemName: "exclamationmark.triangle")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 60)
+                                    Text("Some combinations may cause the pendulums to break")
+                                        .multilineTextAlignment(.center)
+                                        .font(.system(size: 28))
+                                        .padding()
+                                        .foregroundColor(TextColor)
+                                        .frame(width: 550)
+                                }
+                            }
                         }
                         .padding(.bottom, 20)
                     }
