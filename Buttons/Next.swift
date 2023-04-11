@@ -25,6 +25,9 @@ struct NextButton: View {
                     if tapsCounter == tapsThreshold {
                         appSettings.viewController = viewControllerDestination
                     }
+                    
+                    let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
+                      impact.impactOccurred()
                 }, label: {
                     Text("Next")
                         .fontWeight(.bold)

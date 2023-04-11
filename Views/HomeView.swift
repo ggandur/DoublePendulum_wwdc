@@ -66,6 +66,9 @@ struct HomeView: View {
                 }
                 Button(action: {
                     appSettings.viewController = 0
+                    
+                    let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
+                      impact.impactOccurred()
                 }, label: {
                     ZStack {
                         Color(red: 0.53, green: 0.36, blue: 1.0)
