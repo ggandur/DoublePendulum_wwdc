@@ -101,9 +101,9 @@ struct SandBoxView: View {
                         HStack {
                             Button(action: {
                                 appSettings.viewController = 7
-                                
+
                                 let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
-                                  impact.impactOccurred()
+                                impact.impactOccurred()
                             }, label: {
                                 ZStack {
                                     Color(red: 0.53, green: 0.36, blue: 1.0)
@@ -151,9 +151,9 @@ struct SandBoxView: View {
                                 HStack {
                                     Button(action: {
                                         tabItem = 0
-                                        
+
                                         let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
-                                          impact.impactOccurred()
+                                        impact.impactOccurred()
                                     }, label: {
                                         ZStack {
                                             Color(red: 0.53, green: 0.36, blue: 1.0)
@@ -169,9 +169,9 @@ struct SandBoxView: View {
                                     })
                                     Button(action: {
                                         tabItem = 1
-                                        
+
                                         let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
-                                          impact.impactOccurred()
+                                        impact.impactOccurred()
                                     }, label: {
                                         ZStack {
                                             Color(red: 0.53, green: 0.36, blue: 1.0)
@@ -187,9 +187,9 @@ struct SandBoxView: View {
                                     })
                                     Button(action: {
                                         tabItem = 2
-                                        
+
                                         let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
-                                          impact.impactOccurred()
+                                        impact.impactOccurred()
                                     }, label: {
                                         ZStack {
                                             Color(red: 0.53, green: 0.36, blue: 1.0)

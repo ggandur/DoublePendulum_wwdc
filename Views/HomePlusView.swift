@@ -66,9 +66,9 @@ struct HomePlusView: View {
                 HStack {
                     Button(action: {
                         appSettings.viewController = 0
-                        
+
                         let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
-                          impact.impactOccurred()
+                        impact.impactOccurred()
                     }, label: {
                         ZStack {
                             Color(red: 0.53, green: 0.36, blue: 1.0)
@@ -78,7 +78,6 @@ struct HomePlusView: View {
                                 .fontWeight(.bold)
                                 .font(.system(size: 42))
                                 .padding()
-                                .background(HighlightColor)
                                 .foregroundColor(Color.white)
                         }
                     })
@@ -86,9 +85,9 @@ struct HomePlusView: View {
                     Spacer()
                     Button(action: {
                         appSettings.viewController = 8
-                        
+
                         let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
-                          impact.impactOccurred()
+                        impact.impactOccurred()
                     }, label: {
                         ZStack {
                             Color(red: 0.53, green: 0.36, blue: 1.0)
@@ -98,7 +97,6 @@ struct HomePlusView: View {
                                 .fontWeight(.bold)
                                 .font(.system(size: 42))
                                 .padding()
-                                .background(HighlightColor)
                                 .foregroundColor(Color.white)
                         }
                     })

@@ -15,9 +15,9 @@ struct BackButton: View {
             if tapsCounter > 0 {
                 tapsCounter -= 1
             }
-            
+
             let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
-              impact.impactOccurred()
+            impact.impactOccurred()
         }, label: {
             Text("Back")
                 .fontWeight(.bold)

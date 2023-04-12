@@ -60,9 +60,9 @@ struct HeaderControls: View {
 
                 line1 = 170
                 gravity = 0.1
-                
+
                 let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
-                  impact.impactOccurred()
+                impact.impactOccurred()
             }, label: {
                 Image(systemName: "arrow.clockwise.circle.fill")
                     .resizable()
@@ -79,9 +79,9 @@ struct HeaderControls: View {
                 } else {
                     buttonName = "play.circle.fill"
                 }
-                
+
                 let impact = UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
-                  impact.impactOccurred()
+                impact.impactOccurred()
             }, label: {
                 Image(systemName: "\(buttonName)")
                     .resizable()
