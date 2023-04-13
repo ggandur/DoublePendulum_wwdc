@@ -1,6 +1,7 @@
 # Penduleer
 
 This application teaches concepts about pendulums, in a way that introduces the user to a message about something very interesting that it thought me.
+
 Meet Ana, the math teacher! She will guide you trough and show the characteristics of the pendulums. When finished with the story, explore the Sandbox mode, where you can play with the variables that affect them!
 
 ## Instructions
