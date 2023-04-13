@@ -17,7 +17,7 @@ Double: https://www.myphysicslab.com/pendulum/double-pendulum-en.html
 
 Single: https://editor.p5js.org/codingtrain/sketches/SN-39sHAC
 
-Teacher image: Modified from Freepik available at https://br.freepik.com/vetores-gratis/professor-com-desenhos-animados-negro_750156.htm#query=math%20teacher&position=13&from_view=search&track=ais
+Teacher image: Modified from Freepik available at: https://br.freepik.com/vetores-gratis/emoji-de-professora-feminina-em-fundo-branco-com-emocoes-e-expressoes-engracadas_25968428.htm#page=4&query=professora%20matematica%20cartoon&position=45&from_view=search&track=ais
 
 #
 
