@@ -110,6 +110,12 @@ struct DoublePendulumView: View {
                                     .scaledToFit()
                                     .frame(height: 300)
                             } else {
+                                Text("Press the Play button to start!")
+                                    .fontWeight(.bold)
+                                    .multilineTextAlignment(.center)
+                                    .font(.system(size: 36))
+                                    .foregroundColor(TextColor)
+                                    .frame(width: 700, height: 300, alignment: .center)
                                 Image("ProfessoraNormal")
                                     .resizable()
                                     .scaledToFit()
